@@ -32,7 +32,7 @@ const Signup = () => {
           localStorage.setItem("user_image", assets.profile_icon);
           window.dispatchEvent(new Event('storage'));
         }
-        navigate("/");
+        navigate("/home");
       } else {
         alert(data.error || "Signup failed");
       }
@@ -44,7 +44,7 @@ const Signup = () => {
   const handleGoogleSignup = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: "http://localhost:5173/" },
+      options: { redirectTo: "http://localhost:5174/" },
     });
 
     if (error) console.error("Google signup error:", error.message);
@@ -56,7 +56,7 @@ const Signup = () => {
           localStorage.setItem("user_name", user.user_metadata?.name || user.email);
           localStorage.setItem("user_image", user.user_metadata?.avatar_url || assets.profile_icon);
           window.dispatchEvent(new Event('storage'));
-          navigate("/");
+          navigate("/home");
         }
       });
     }
@@ -127,7 +127,7 @@ const Signup = () => {
             </button>
 
             <div className="text-center text-sm text-gray-500 dark:text-gray-300 mt-3">
-              Already have an account? <a href="/login" className="text-primary font-medium">Login</a>
+              Already have an account? <a href="/" className="text-primary font-medium">Login</a>
             </div>
           </motion.div>
         </div>
